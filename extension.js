@@ -23,6 +23,7 @@ const BackgroundManager = imports.ui.background.BackgroundManager;
 var _Background_destroy = Background.prototype._destroy;
 var _BackgroundManager_swapBackgroundActor = BackgroundManager.prototype._swapBackgroundActor;
 const ExtensionUtils = imports.misc.extensionUtils;
+const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
 var debug = true;
