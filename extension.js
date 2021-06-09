@@ -25,7 +25,9 @@ var _BackgroundManager_swapBackgroundActor = BackgroundManager.prototype._swapBa
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
+const Tweener = imports.ui.tweener;
 
+var FADE_ANIMATION_TIME = 1.0;
 var debug = true;
 
 function log(msg) {
@@ -39,7 +41,7 @@ class Extension {
 
     enable() {
         if (Convenience.currentVersionSmaller('3.33.3')) {
-            log('enabled on ' + ExtensionUtils.getCurrentExtension());
+            log('enabled');
             Background.prototype._destroy = patched_background_destroy;
             BackgroundManager.prototype._swapBackgroundActor = patched_backgroundmanager_swapBackgroundActor;
         }
@@ -47,7 +49,7 @@ class Extension {
 
     disable() {
         if (Convenience.currentVersionSmaller('3.33.3')) {
-            log('enabled on ' + ExtensionUtils.getCurrentExtension());
+            log('disabled');
             Background.prototype._destroy = _Background_destroy;
             BackgroundManager.prototype._swapBackgroundActor = _BackgroundManager_swapBackgroundActor;
         }
@@ -59,7 +61,6 @@ function init() {
 }
 
 // there are the patched versions of the two functions
-
 function patched_background_destroy() {
     this.background = null;
 
